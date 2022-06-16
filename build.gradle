@@ -48,7 +48,6 @@ subprojects {
         implementation 'org.springframework.cloud:spring-cloud-starter'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         //  region 配置 bootstrap.yml，是其生效
-//        implementation 'org.springframework.cloud:spring-cloud-context'
         implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
         //  endregion
         compileOnly 'org.projectlombok:lombok'
