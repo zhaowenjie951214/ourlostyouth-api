@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
     @GetMapping("/")
+    @TokenNotValidation
     public String index() {
         return "system-server服务启动成功";
     }

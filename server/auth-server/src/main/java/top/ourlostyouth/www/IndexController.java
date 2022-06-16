@@ -7,12 +7,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
     @GetMapping("/")
+    @TokenNotValidation
     public String index() {
         return "auth-server服务启动成功";
     }
 
+    @GetMapping("/1")
+    @PreAuthorize("@el.check('12121')")
+    @TokenNotValidation
+    public String info1() {
+        return "auth-server服务启动成功";
+    }
+
     @GetMapping("/actuator/info")
-    @PreAuthorize("@el.check('app:add')")
     public String info() {
         return "auth-server服务启动成功";
     }
