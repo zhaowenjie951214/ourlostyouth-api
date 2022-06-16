@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 import top.ourlostyouth.www.config.RsaProperties;
 import top.ourlostyouth.www.config.utils.RedisUtils;
 import top.ourlostyouth.www.exception.BadRequestException;
+import top.ourlostyouth.www.service.dto.AuthUserDto;
 import top.ourlostyouth.www.utils.SecurityUtils;
 import top.ourlostyouth.www.TokenNotValidation;
 import top.ourlostyouth.www.config.bean.LoginCodeEnum;
@@ -38,7 +39,6 @@ import top.ourlostyouth.www.config.bean.LoginProperties;
 import top.ourlostyouth.www.config.bean.SecurityProperties;
 import top.ourlostyouth.www.security.TokenProvider;
 import top.ourlostyouth.www.security.service.OnlineUserService;
-import top.ourlostyouth.www.service.AuthUserDto;
 import top.ourlostyouth.www.security.dto.JwtUserDto;
 import top.ourlostyouth.www.utils.RsaUtils;
 

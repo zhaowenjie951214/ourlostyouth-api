@@ -1,10 +1,12 @@
-package top.ourlostyouth.www.config;
+package top.ourlostyouth.www.exception.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.ourlostyouth.www.exception.BadRequestException;
+import top.ourlostyouth.www.response.Result;
+import top.ourlostyouth.www.response.ResultGenerator;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,11 +27,11 @@ public class RestExceptionHandler {
      * @param ex
      * @return
      */
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(BadRequestException.class)
     @ResponseBody
-    public Object handleBusinessException(HttpServletRequest request, Exception ex) {
+    public Result<String> handleBusinessException(HttpServletRequest request, BadRequestException ex) {
         ex.printStackTrace();
-        return ex.getMessage();
+        return ResultGenerator.fail(ex.getStatus(), ex.getMessage());
     }
 
 }
