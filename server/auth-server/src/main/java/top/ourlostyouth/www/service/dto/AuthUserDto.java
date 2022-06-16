@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package top.ourlostyouth.www.service;
+package top.ourlostyouth.www.service.dto;
 
 import lombok.Getter;
 import lombok.Setter;
