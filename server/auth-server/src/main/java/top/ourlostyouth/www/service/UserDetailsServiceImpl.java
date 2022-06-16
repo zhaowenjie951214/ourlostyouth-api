@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package top.ourlostyouth.www.security.service;
+package top.ourlostyouth.www.service;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +25,7 @@ import top.ourlostyouth.www.exception.BadRequestException;
 import top.ourlostyouth.www.exception.EntityNotFoundException;
 import top.ourlostyouth.www.config.bean.LoginProperties;
 import top.ourlostyouth.www.security.dto.JwtUserDto;
+import top.ourlostyouth.www.security.service.UserCacheManager;
 
 import java.util.ArrayList;
 import java.util.List;

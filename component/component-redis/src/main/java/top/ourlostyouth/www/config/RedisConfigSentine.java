@@ -40,7 +40,7 @@ public class RedisConfigSentine {
         config.setMinIdle(redisProperties.getLettuce().getPool().getMinIdle());
         config.setMaxIdle(redisProperties.getLettuce().getPool().getMaxIdle());
         config.setMaxTotal(redisProperties.getLettuce().getPool().getMaxActive());
-        config.setMaxWaitMillis(redisProperties.getLettuce().getPool().getMaxWait().toMillis());
+        config.setMaxWait(redisProperties.getLettuce().getPool().getMaxWait());
         return config;
     }
 

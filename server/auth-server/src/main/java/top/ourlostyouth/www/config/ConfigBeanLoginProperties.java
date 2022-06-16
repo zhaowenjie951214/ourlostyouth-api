@@ -18,7 +18,7 @@ package top.ourlostyouth.www.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import top.ourlostyouth.www.config.bean.SecurityProperties;
+import top.ourlostyouth.www.config.bean.LoginProperties;
 
 /**
  * @apiNote 配置文件转换Pojo类的 统一配置 类
@@ -26,10 +26,11 @@ import top.ourlostyouth.www.config.bean.SecurityProperties;
  * @date: 2020/6/10 19:04
  */
 @Configuration
-public class ConfigBeanConfiguration {
+public class ConfigBeanLoginProperties {
+
     @Bean
-    @ConfigurationProperties(prefix = "jwt")
-    public SecurityProperties securityProperties() {
-        return new SecurityProperties();
+    @ConfigurationProperties(prefix = "login")
+    public LoginProperties loginProperties() {
+        return new LoginProperties();
     }
 }

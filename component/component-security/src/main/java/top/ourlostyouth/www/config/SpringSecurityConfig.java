@@ -41,7 +41,6 @@ import top.ourlostyouth.www.TokenNotValidation;
 import top.ourlostyouth.www.config.bean.SecurityProperties;
 import top.ourlostyouth.www.security.JwtAccessDeniedHandler;
 import top.ourlostyouth.www.security.JwtAuthenticationEntryPoint;
-import top.ourlostyouth.www.security.TokenConfigurer;
 import top.ourlostyouth.www.security.TokenProvider;
 import top.ourlostyouth.www.security.service.OnlineUserService;
 import top.ourlostyouth.www.security.service.UserCacheClean;
@@ -101,7 +100,7 @@ public class SpringSecurityConfig {
                 requestMappingHandlerMapping = (RequestMappingHandlerMapping) applicationContext.getBean("requestMappingHandlerMapping");
         Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = requestMappingHandlerMapping.getHandlerMethods();
         // 获取匿名标记
-        Map<String, Set<String>> anonymousUrls = getAnonymousUrl(handlerMethodMap);
+        Map<String, Set<String>> anonymousUrls = getTokenNotValidationUrl(handlerMethodMap);
         return http
                 // 禁用 CSRF
                 .csrf().disable()
@@ -161,11 +160,11 @@ public class SpringSecurityConfig {
     }
 
 
-    private TokenConfigurer securityConfigurerAdapter() {
-        return new TokenConfigurer(tokenProvider, properties, onlineUserService, userCacheClean);
+    private TokenConfig securityConfigurerAdapter() {
+        return new TokenConfig(tokenProvider, properties, onlineUserService, userCacheClean);
     }
 
-    private Map<String, Set<String>> getAnonymousUrl(Map<RequestMappingInfo, HandlerMethod> handlerMethodMap) {
+    private Map<String, Set<String>> getTokenNotValidationUrl(Map<RequestMappingInfo, HandlerMethod> handlerMethodMap) {
         Map<String, Set<String>> anonymousUrls = new HashMap<>(8);
         Set<String> get = new HashSet<>();
         Set<String> post = new HashSet<>();

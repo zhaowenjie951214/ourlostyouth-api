@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package top.ourlostyouth.www.security;
+package top.ourlostyouth.www.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -21,6 +21,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import top.ourlostyouth.www.config.bean.SecurityProperties;
+import top.ourlostyouth.www.security.TokenFilter;
+import top.ourlostyouth.www.security.TokenProvider;
 import top.ourlostyouth.www.security.service.OnlineUserService;
 import top.ourlostyouth.www.security.service.UserCacheClean;
 
@@ -28,7 +30,7 @@ import top.ourlostyouth.www.security.service.UserCacheClean;
  * @author /
  */
 @RequiredArgsConstructor
-public class TokenConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
+public class TokenConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
     private final TokenProvider tokenProvider;
     private final SecurityProperties properties;

@@ -38,7 +38,7 @@ import top.ourlostyouth.www.config.bean.LoginProperties;
 import top.ourlostyouth.www.config.bean.SecurityProperties;
 import top.ourlostyouth.www.security.TokenProvider;
 import top.ourlostyouth.www.security.service.OnlineUserService;
-import top.ourlostyouth.www.security.service.dto.AuthUserDto;
+import top.ourlostyouth.www.service.AuthUserDto;
 import top.ourlostyouth.www.security.dto.JwtUserDto;
 import top.ourlostyouth.www.utils.RsaUtils;
 
