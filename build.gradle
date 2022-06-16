@@ -1,0 +1,108 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'top.ourlostyouth.www'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+
+bootJar.enabled = false
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', "2021.0.3")
+    set('springBootVersion', "2.7.0")
+}
+
+
+//dependencyManagement {
+//    imports {
+//        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//    }
+//}
+
+//修改build 的 jar名称
+//bootJar {
+//    baseName "jarName"
+//    launchScript()
+//}
+
+subprojects {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+/* 添加通用依赖 */
+    dependencies {
+        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+        implementation 'org.springframework.cloud:spring-cloud-starter'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        //  region 配置 bootstrap.yml，是其生效
+//        implementation 'org.springframework.cloud:spring-cloud-context'
+        implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+        //  endregion
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        implementation "io.springfox:springfox-swagger2:2.9.2"
+        implementation "io.springfox:springfox-swagger-ui:2.9.2"
+//        implementation "io.swagger:swagger-models:2.9.2"
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
+
+
+/**
+ * compile（implementation，api）
+ 这种是我们最常用的方式，使用该方式依赖的库将会参与编译和打包。
+
+ implementation：该依赖方式所依赖的库不会传递，只会在当前module中生效。
+ api：该依赖方式会传递所依赖的库，当其他module依赖了该module时，
+ 可以使用该module下使用api依赖的库。
+
+ 当我们依赖一些第三方的库时，可能会遇到com.android.support冲突的问题，
+ 就是因为开发者使用的compile或api依赖的com.android.support包与我们本地所依赖的
+ com.android.support包版本不一样，
+ 所以就会报All com.android.support
+ libraries must use the exact same version specification
+ (mixing versions can lead to runtime crashes这个错误。
+ * provided（compileOnly）
+ 只在编译时有效，不会参与打包
+ 可以在自己的moudle中使用该方式依赖一些比如com.android.support，gson这些使用者常用的库，避免冲突。
+ annotationProcessor与compileOnly都是只编译并不打入apk中
+ annotationProcessor：编译时生成代码，编译完就不需要了
+ compileOnly：有重复的库时，可以剃除重复库，只保留一个库
+
+ apk（runtimeOnly）
+ 只在生成apk的时候参与打包，编译时不会参与，很少用。
+
+ testCompile（testImplementation）
+ testCompile 只在单元测试代码的编译以及最终打包测试apk时有效。
+
+ debugCompile（debugImplementation）
+ debugCompile 只在debug模式的编译和最终的debug apk打包时有效
+
+ releaseCompile（releaseImplementation）
+ Release compile 仅仅针对Release 模式的编译和最终的Release apk打包。
+ */

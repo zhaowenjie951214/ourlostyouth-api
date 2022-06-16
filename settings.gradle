@@ -1,0 +1,8 @@
+rootProject.name = 'ourlostyouth-api'
+/* 引入子模块 */
+include ':server:auth-server'
+include ':server:system-server'
+
+include ':common'
+include ':component:component-security'
+include ':component:component-redis'

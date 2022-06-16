@@ -1,0 +1,9 @@
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':component:component-security')
+//    implementation project(':component:component-redis')
+//    implementation project(':common')
+}

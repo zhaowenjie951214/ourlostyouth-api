@@ -1,0 +1,16 @@
+group = 'top.ourlostyouth.www'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+//    set('jjwtVersion', "0.11.1")
+}
+
+dependencies {
+    implementation project(':component:component-security')
+    implementation project(':component:component-redis')
+    implementation project(':common')
+}

@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev,dev-security
+
+  application:
+    name: system-server
